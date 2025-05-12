@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  servico-usuarios:
+    build: .
+    container_name: servico-usuarios
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mongodb-usuarios
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb-usuarios:27017/usuariosdb
+
+  mongodb-usuarios:
+    image: mongo:6.0
+    container_name: mongodb-usuarios
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_usuarios_data:/data/db
+
+volumes:
+  mongo_usuarios_data:
