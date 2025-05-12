@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: servico-loginjwt
+          uri: http://localhost:8081
+          predicates:
+            - Path=/auth/**
+
+        - id: servico-usuarios
+          uri: http://localhost:8082
+          predicates:
+            - Path=/usuarios/**
+
+        - id: servico-clientes
+          uri: http://localhost:8083
+          predicates:
+            - Path=/clientes/**
+
+        - id: servico-projetos
+          uri: http://localhost:8084
+          predicates:
+            - Path=/projetos/**
